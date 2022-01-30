@@ -1,4 +1,4 @@
-const { apiCall } = require('./Utility');
+const { apiCall, convertEmbedYTUrl } = require('./Utility');
 const cheerio = require('cheerio');
 
 class MALEntry {
@@ -60,7 +60,7 @@ class MALEntry {
         const $ = cheerio.load(data);
         const contentWrapper = $('#contentWrapper');
 
-        // Content is main div that consist of 2 big div which are metadata and details
+        // Content is a main div that consist of 2 big div which are metadata and details
         const content = contentWrapper.find('#content table tbody tr');
 
         // Metadata is left narrow menu
@@ -89,6 +89,14 @@ class MALEntry {
             })
             .get();
 
+        const detailsSection = content.find('.anime-detail-header-stats.di-tc.va-t');
+
+        const pvDiv = detailsSection.next().find('div.video-promotion a').attr();
+        if (pvDiv) this.PV = convertEmbedYTUrl(pvDiv['href']);
+
+        this.desciption = content
+            .find('p[itemprop=description], span[itemprop=description]')
+            .text();
         this.poster = poster;
         this.alternativeTitles = this.#processMetadata(alternativeTitles);
         this.informations = this.#processMetadata(informations);

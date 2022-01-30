@@ -33,4 +33,18 @@ async function apiCall(queryParam = null, path = '', url = 'https://myanimelist.
     }
 }
 
-module.exports = { apiCall };
+/**
+ *
+ * @param {String} url Embed Youtube URL
+ */
+function convertEmbedYTUrl(url) {
+    try {
+        const urlObj = new URL(url);
+        const id = urlObj.pathname.split('/').pop();
+        return 'https://www.youtube.com/watch?v=' + id;
+    } catch (error) {
+        throw Error('Error while converting embed Youtube URL');
+    }
+}
+
+module.exports = { apiCall, convertEmbedYTUrl };

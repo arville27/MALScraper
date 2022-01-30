@@ -29,7 +29,7 @@ class MALScraper {
         return resultsTable
             .find('tbody tr')
             .next()
-            .map((i, el) => {
+            .map((_, el) => {
                 const entry = $(el).children().first();
                 const thumbnail = entry.find('img').attr()['data-src'];
                 const title = entry.next().find('.title a').first().text().trim();
