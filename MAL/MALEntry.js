@@ -30,17 +30,18 @@ class MALEntry {
             const representAsArray =
                 key === 'Genres' ||
                 key === 'Theme' ||
+                key === 'Themes' ||
                 key === 'Producers' ||
                 key === 'Genre' ||
                 key === 'Authors';
             masterObj[key] = representAsArray ? singleStringValue.split(', ') : singleStringValue;
 
             // Extra checks to ensure relevant result
-            if (key === 'Genres' || key === 'Theme' || key === 'Genre') {
+            if (key === 'Genres' || key === 'Theme' || key === 'Genre' || key === 'Themes') {
                 // Removes duplicate word for anime in certain key
                 masterObj[key] = masterObj[key].map((word) => word.slice(0, word.length / 2));
             } else if (
-                (key === 'Producers' || key === 'Licensors') &&
+                (key === 'Producers' || key === 'Licensors' || key === 'Themes') &&
                 masterObj[key].includes('None found')
             ) {
                 // Change none found to empty array
