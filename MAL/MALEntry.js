@@ -39,7 +39,10 @@ class MALEntry {
             if (key === 'Genres' || key === 'Theme' || key === 'Genre') {
                 // Removes duplicate word for anime in certain key
                 masterObj[key] = masterObj[key].map((word) => word.slice(0, word.length / 2));
-            } else if (key === 'Producers' && masterObj[key].includes('None found')) {
+            } else if (
+                (key === 'Producers' || key === 'Licensors') &&
+                masterObj[key].includes('None found')
+            ) {
                 // Change none found to empty array
                 masterObj[key] = [];
             } else if (key === 'Demographic') {
