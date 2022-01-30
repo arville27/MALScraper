@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {},
     "keywords": [],
-    "author": "",
+    "author": "Daniel Wijaya",
     "license": "ISC",
     "dependencies": {
         "axios": "^0.25.0",
