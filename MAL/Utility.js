@@ -17,6 +17,7 @@ const headers = {
  *
  * @param {Object} queryParam params object for axios option
  * @param {string} path MyAnimeList pathname
+ * @param {string} url Request url
  * @returns Raw response from MyAnimeList
  */
 async function apiCall(queryParam = null, path = '', url = 'https://myanimelist.net') {
